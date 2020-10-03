@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="cz.pinadani.ukazkakodu.data.remote.model.UserDetail" />
+
+        <variable
+            name="actionItemListener"
+            type="cz.pinadani.ukazkakodu.viewModel.UserDetailClickListener" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{() -> actionItemListener.onItemClicked(model)}"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:roundImageUrl="@{model.avatar}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{model.firstName + model.lastName}"
+                android:textColor="@color/healine"
+                android:textSize="@dimen/text_size_18"
+                tools:text="Karel Pepa" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{model.email}"
+                android:textColor="@color/body"
+                android:textSize="@dimen/text_size_12"
+                tools:text="dasda@sdasd.as" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

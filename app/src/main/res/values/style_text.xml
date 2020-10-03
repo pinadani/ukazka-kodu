@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextHeadline1" parent="TextAppearance.AppCompat">>
+        <item name="fontFamily">@font/ilisarniq_bold</item>
+        <item name="android:textColor">@color/healine</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="textBody" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/ilisarniq_regular</item>
+    </style>
+
+</resources>
