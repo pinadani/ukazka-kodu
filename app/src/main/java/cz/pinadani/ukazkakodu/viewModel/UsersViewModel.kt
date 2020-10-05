@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel
 import cz.pinadani.ukazkakodu.adapter.OnItemActionListener
 import cz.pinadani.ukazkakodu.adapter.UserViewType
 import cz.pinadani.ukazkakodu.adapter.ViewType
-import cz.pinadani.ukazkakodu.data.remote.model.Resource
-import cz.pinadani.ukazkakodu.data.remote.model.UserDetail
+import cz.pinadani.ukazkakodu.data.AppDatabase
+import cz.pinadani.ukazkakodu.data.model.Resource
+import cz.pinadani.ukazkakodu.data.model.user.UserData
+import cz.pinadani.ukazkakodu.data.model.user.UserDetail
 import cz.pinadani.ukazkakodu.data.remote.users.UsersRepo
 import cz.pinadani.ukazkakodu.livedata.SingleLiveEvent
 import cz.pinadani.ukazkakodu.manager.CoroutinesManager
@@ -18,6 +20,7 @@ import kotlinx.coroutines.launch
 
 class UsersViewModel(
     private val resourceProvider: ResourceProvider,
+    private val appDatabase: AppDatabase,
     private val coroutinesManager: CoroutinesManager,
     private val usersRepo: UsersRepo
 ) : ViewModel(), UserDetailClickListener<UserDetail> {
@@ -50,6 +53,9 @@ class UsersViewModel(
                     val result = usersRepo.getUsers(i)
                     if (result.status == Resource.Status.SUCCESS) {
                         users.addAll(result.data!!.data)
+                        result.data.data.forEach {
+                            appDatabase.userDao().insert(UserData(it))
+                        }
                     }
                 })
             }

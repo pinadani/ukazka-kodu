@@ -1,7 +1,7 @@
 package cz.pinadani.ukazkakodu.data.remote
 
-import cz.pinadani.ukazkakodu.data.remote.model.UserDetailResponse
-import cz.pinadani.ukazkakodu.data.remote.model.UsersDetailsResponse
+import cz.pinadani.ukazkakodu.data.model.user.UserDetailResponse
+import cz.pinadani.ukazkakodu.data.model.user.UsersDetailsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

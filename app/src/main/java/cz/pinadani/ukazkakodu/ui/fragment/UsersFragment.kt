@@ -1,6 +1,9 @@
 package cz.pinadani.ukazkakodu.ui.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,12 +28,23 @@ class UsersFragment : DataBindingFragment<FragmentUsersBinding>() {
 
     override fun layoutId() = R.layout.fragment_users
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        vb.vm = vm
-        setupAdapter()
-        initObservers()
-        vm.makeNetworkCall()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val initView = !hasInitializedRootView
+        val view = super.onCreateView(inflater, container, savedInstanceState)
+        if (initView) {
+            vb.vm = vm
+            setupAdapter()
+            initObservers()
+            vm.makeNetworkCall()
+        } else {
+            initObservers()
+        }
+
+        return view
     }
 
     private fun setupAdapter() {
@@ -41,10 +55,12 @@ class UsersFragment : DataBindingFragment<FragmentUsersBinding>() {
 
     private fun initObservers() {
         vm.updateEvent.observe(viewLifecycleOwner, {
+            loading.hide()
             if (it) {
                 recyclerView.show()
-                loading.hide()
                 adapter.setList(vm.getList())
+            } else {
+                noData.show()
             }
         })
         vm.moveToDetail.observe(viewLifecycleOwner, {

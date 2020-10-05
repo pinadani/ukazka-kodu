@@ -1,4 +1,4 @@
-package cz.pinadani.ukazkakodu.data.remote.model
+package cz.pinadani.ukazkakodu.data.model
 
 import cz.pinadani.ukazkakodu.data.remote.exception.AppException
 

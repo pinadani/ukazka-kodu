@@ -3,4 +3,5 @@
 
     <string name="lorem_long">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Nulla est. Aliquam in lorem sit amet leo accumsan lacinia.</string>
     <string name="lorem_short">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </string>
+    <string name="error_message_no_data">No data</string>
 </resources>

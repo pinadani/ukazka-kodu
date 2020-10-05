@@ -1,7 +1,7 @@
 package cz.pinadani.ukazkakodu.extensions
 
 import cz.pinadani.ukazkakodu.data.remote.exception.AppException
-import cz.pinadani.ukazkakodu.data.remote.model.Resource
+import cz.pinadani.ukazkakodu.data.model.Resource
 
 suspend fun <T> handleException(apiCall: suspend () -> T): Resource<T> {
     return try {

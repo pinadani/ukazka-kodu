@@ -12,7 +12,7 @@ import androidx.databinding.ViewDataBinding
  * Fragment Binding
  */
 abstract class DataBindingFragment<VB : ViewDataBinding> : BaseFragment() {
-
+    var hasInitializedRootView = false
     lateinit var vb: VB
 
     override fun onCreateView(
@@ -20,8 +20,10 @@ abstract class DataBindingFragment<VB : ViewDataBinding> : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        vb = DataBindingUtil.inflate(inflater, layoutId(), container, false)
+        if (!::vb.isInitialized) {
+            vb = DataBindingUtil.inflate(inflater, layoutId(), container, false)
+            hasInitializedRootView = true
+        }
         return vb.root
     }
-
 }

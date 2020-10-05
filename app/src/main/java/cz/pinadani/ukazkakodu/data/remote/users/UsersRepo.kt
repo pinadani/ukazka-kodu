@@ -1,9 +1,9 @@
 package cz.pinadani.ukazkakodu.data.remote.users
 
+import cz.pinadani.ukazkakodu.data.model.Resource
+import cz.pinadani.ukazkakodu.data.model.user.UserDetailResponse
+import cz.pinadani.ukazkakodu.data.model.user.UsersDetailsResponse
 import cz.pinadani.ukazkakodu.data.remote.ApiService
-import cz.pinadani.ukazkakodu.data.remote.model.Resource
-import cz.pinadani.ukazkakodu.data.remote.model.UserDetailResponse
-import cz.pinadani.ukazkakodu.data.remote.model.UsersDetailsResponse
 import cz.pinadani.ukazkakodu.extensions.handleException
 
 class UsersRepo(private val apiService: ApiService) {

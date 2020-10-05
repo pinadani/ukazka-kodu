@@ -9,6 +9,7 @@
 
     <style name="textBody" parent="TextAppearance.AppCompat">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/body</item>
         <item name="android:fontFamily">@font/ilisarniq_regular</item>
     </style>
 

@@ -1,5 +1,6 @@
 package cz.pinadani.ukazkakodu.ui
 
+import cz.pinadani.ukazkakodu.data.AppDatabase
 import cz.pinadani.ukazkakodu.manager.CoroutinesManager
 import cz.pinadani.ukazkakodu.ui.utils.ResourceProvider
 import cz.pinadani.ukazkakodu.viewModel.UserDetailViewModel
@@ -9,8 +10,9 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val module = module {
-    viewModel { UsersViewModel(get(), get(), get()) }
-    viewModel { UserDetailViewModel(get(), get(), get()) }
+    viewModel { UsersViewModel(get(), get(), get(), get()) }
+    viewModel { UserDetailViewModel(get(), get(), get(), get()) }
     single { ResourceProvider(androidApplication()) }
+    single { AppDatabase.getInstance(androidApplication()) }
     single { CoroutinesManager() }
 }

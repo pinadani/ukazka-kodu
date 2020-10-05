@@ -1,4 +1,4 @@
-package cz.pinadani.ukazkakodu.data.remote.model
+package cz.pinadani.ukazkakodu.data.model.user
 
 
 import com.google.gson.annotations.SerializedName
@@ -16,4 +16,12 @@ data class UserDetail(
     val avatar: String
 
 
-)
+) {
+    constructor(userData: UserData) : this(
+        userData.id,
+        userData.email,
+        userData.firstName,
+        userData.lastName,
+        userData.avatar
+    )
+}

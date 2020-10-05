@@ -24,16 +24,21 @@ class UserDetailFragment : DataBindingFragment<FragmentUserDetailBinding>() {
         super.onActivityCreated(savedInstanceState)
         vb.vm = vm
         initObservers()
-        vm.makeNetworkCall(args.id)
+
+        if(savedInstanceState == null) {
+            vm.makeNetworkCall(args.id)
+        }
     }
 
 
     private fun initObservers() {
         vm.updateEvent.observe(viewLifecycleOwner, {
+            loading.hide()
             if (it) {
                 vb.model = vm.user
-                loading.hide()
                 contentLayout.show()
+            } else {
+                noData.show()
             }
         })
     }

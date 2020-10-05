@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="cz.pinadani.ukazkakodu.data.remote.model.UserDetail" />
+            type="cz.pinadani.ukazkakodu.data.model.user.UserDetail" />
 
         <variable
             name="actionItemListener"
