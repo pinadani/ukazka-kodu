@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@{model.firstName + model.lastName}"
+                android:text="@{model.firstName + ' ' + model.lastName}"
                 android:textColor="@color/healine"
                 android:textSize="@dimen/text_size_18"
                 tools:text="Karel Pepa" />

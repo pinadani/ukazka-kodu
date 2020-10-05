@@ -7,21 +7,17 @@
             name="vm"
             type="cz.pinadani.ukazkakodu.viewModel.UsersViewModel" />
 
-        <variable
-            name="model"
-            type="cz.pinadani.ukazkakodu.data.remote.model.UsersDetailsResponse" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvPlaceholder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@{vm.textObservable}" />
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

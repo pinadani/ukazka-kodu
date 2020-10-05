@@ -1,6 +1,7 @@
 package cz.pinadani.ukazkakodu.ui.fragment
 
 import android.os.Bundle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cz.pinadani.ukazkakodu.R
@@ -42,9 +43,12 @@ class UsersFragment : DataBindingFragment<FragmentUsersBinding>() {
         vm.updateEvent.observe(viewLifecycleOwner, {
             if (it) {
                 recyclerView.show()
-                tvPlaceholder.hide()
+                loading.hide()
                 adapter.setList(vm.getList())
             }
+        })
+        vm.moveToDetail.observe(viewLifecycleOwner, {
+            findNavController().navigate(UsersFragmentDirections.showDetail(it))
         })
     }
 

@@ -3,11 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/blankFragment">
+    app:startDestination="@id/usersFragment">
 
     <fragment
-        android:id="@+id/blankFragment"
+        android:id="@+id/usersFragment"
         android:name="cz.pinadani.ukazkakodu.ui.fragment.UsersFragment"
-        tools:layout="@layout/fragment_users" />
+        tools:layout="@layout/fragment_users">
+
+        <action
+            android:id="@+id/show_detail"
+            app:destination="@id/userDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="cz.pinadani.ukazkakodu.ui.fragment.UserDetailFragment"
+        tools:layout="@layout/fragment_user_detail">
+
+        <argument
+            android:name="id"
+            app:argType="integer"
+            app:nullable="false" />
+
+    </fragment>
 
 </navigation>

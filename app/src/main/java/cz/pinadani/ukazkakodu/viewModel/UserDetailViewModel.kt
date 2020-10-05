@@ -2,9 +2,6 @@ package cz.pinadani.ukazkakodu.viewModel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import cz.pinadani.ukazkakodu.adapter.OnItemActionListener
-import cz.pinadani.ukazkakodu.adapter.UserViewType
-import cz.pinadani.ukazkakodu.adapter.ViewType
 import cz.pinadani.ukazkakodu.data.remote.model.Resource
 import cz.pinadani.ukazkakodu.data.remote.model.UserDetail
 import cz.pinadani.ukazkakodu.data.remote.users.UsersRepo
@@ -16,56 +13,37 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 
-class UsersViewModel(
+class UserDetailViewModel(
     private val resourceProvider: ResourceProvider,
     private val coroutinesManager: CoroutinesManager,
     private val usersRepo: UsersRepo
-) : ViewModel(), UserDetailClickListener<UserDetail> {
+) : ViewModel() {
 
     companion object {
         private const val logTag = "UsersViewModel"
     }
 
     val updateEvent = SingleLiveEvent<Boolean>()
-    val moveToDetail = SingleLiveEvent<Int>()
-    private val users = ArrayList<UserDetail>()
-    private val list = ArrayList<ViewType<*>>()
+    lateinit var user: UserDetail
 
-    fun getList(): List<ViewType<*>> {
-        list.clear()
-        users.forEach {
-            list.add(UserViewType(it))
-        }
-        return list
-    }
-
-    fun makeNetworkCall() {
+    fun makeNetworkCall(id: Int) {
         Log.i(logTag, "Set TextView using DataBinding")
 
         coroutinesManager.ioScope.launch {
             val deferredList = ArrayList<Deferred<*>>()
 
-            for (i in 1..2) {
-                deferredList.add(async {
-                    val result = usersRepo.getUsers(i)
-                    if (result.status == Resource.Status.SUCCESS) {
-                        users.addAll(result.data!!.data)
-                    }
-                })
-            }
+            deferredList.add(async {
+                val result = usersRepo.getUser(id)
+                if (result.status == Resource.Status.SUCCESS) {
+                    user = result.data!!.data
+                }
+            })
 
             deferredList.joinAll()
-            Log.i(logTag, "All Networks calls complete")
 
             updateEvent.postValue(true)
             Log.i(logTag, "Update UI")
         }
     }
-
-
-    override fun onItemClicked(item: UserDetail) {
-        moveToDetail.postValue(item.id)
-    }
 }
 
-interface UserDetailClickListener<T> : OnItemActionListener<T> {}
