@@ -43,7 +43,6 @@ class UsersFragment : DataBindingFragment<FragmentUsersBinding>() {
         } else {
             initObservers()
         }
-
         return view
     }
 

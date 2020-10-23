@@ -24,10 +24,7 @@ class UserDetailFragment : DataBindingFragment<FragmentUserDetailBinding>() {
         super.onActivityCreated(savedInstanceState)
         vb.vm = vm
         initObservers()
-
-        if(savedInstanceState == null) {
-            vm.makeNetworkCall(args.id)
-        }
+        vm.makeNetworkCall(args.id)
     }
 
 

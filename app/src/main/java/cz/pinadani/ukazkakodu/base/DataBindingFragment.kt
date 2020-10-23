@@ -24,6 +24,7 @@ abstract class DataBindingFragment<VB : ViewDataBinding> : BaseFragment() {
             vb = DataBindingUtil.inflate(inflater, layoutId(), container, false)
             hasInitializedRootView = true
         }
+        retainInstance = true
         return vb.root
     }
 }
